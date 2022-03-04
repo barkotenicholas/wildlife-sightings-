@@ -62,4 +62,21 @@ class AnimalTest {
         assertTrue(Animal.all().get(2).equals(thirdAnimal));
         assertTrue(Animal.all().get(3).equals(fourthAnimal));
     }
+    @Test
+    @DisplayName("find returns with correct Animal")
+    public void find_returnsWithCorrectId_Animal(){
+        Animal firstAnimal = new Animal("Zebra");
+        Animal secondAnimal = new Animal("Lion");
+        Animal thirdAnimal = new Animal("Elephant");
+        Animal fourthAnimal = new Animal("Tiger");
+
+        firstAnimal.save();
+        secondAnimal.save();
+        thirdAnimal.save();
+        fourthAnimal.save();
+
+        assertEquals(Animal.find(thirdAnimal.getId()),thirdAnimal);
+    }
+
+
 }
