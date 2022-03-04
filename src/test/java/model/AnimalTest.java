@@ -37,4 +37,11 @@ class AnimalTest {
         Animal savedAnimal = Animal.all().get(0);
         assertEquals(testAnimal.getId(),savedAnimal.getId());
     }
+    @Test
+    @DisplayName("save inserts object into database")
+    public void save_insertsObjectIntoDatabase_true(){
+        Animal testAnimal = new Animal("Lion");
+        testAnimal.save();
+        assertEquals(Animal.all().get(0), testAnimal);
+    }
 }
