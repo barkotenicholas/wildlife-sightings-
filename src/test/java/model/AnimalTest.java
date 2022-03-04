@@ -44,4 +44,22 @@ class AnimalTest {
         testAnimal.save();
         assertEquals(Animal.all().get(0), testAnimal);
     }
+    @Test
+    @DisplayName("All returns all instances of Animal")
+    public void all_returnsAllInstancesOfAnimals_list(){
+        Animal firstAnimal = new Animal("Zebra");
+        Animal secondAnimal = new Animal("Lion");
+        Animal thirdAnimal = new Animal("Elephant");
+        Animal fourthAnimal = new Animal("Tiger");
+
+        firstAnimal.save();
+        secondAnimal.save();
+        thirdAnimal.save();
+        fourthAnimal.save();
+
+        assertTrue(Animal.all().get(0).equals(firstAnimal));
+        assertTrue(Animal.all().get(1).equals(secondAnimal));
+        assertTrue(Animal.all().get(2).equals(thirdAnimal));
+        assertTrue(Animal.all().get(3).equals(fourthAnimal));
+    }
 }
