@@ -62,4 +62,15 @@ public class Animal {
             return con.createQuery(sql).addParameter("id",id).executeAndFetchFirst(Animal.class);
         }
     }
+
+    public void update(String newName,int id){
+
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE animal SET name = :name WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("name",newName)
+                    .addParameter("id",id)
+                    .executeUpdate();
+        }
+    }
 }

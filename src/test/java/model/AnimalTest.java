@@ -77,6 +77,13 @@ class AnimalTest {
 
         assertEquals(Animal.find(thirdAnimal.getId()),thirdAnimal);
     }
-
-
+    @Test
+    @DisplayName("Updates updates data")
+    public void update_updatesNameInAnimal_true(){
+        Animal testAnimal = new Animal("Lion");
+        testAnimal.save();
+        testAnimal.update("zebra",testAnimal.getId());
+        Animal newAnimal = Animal.all().get(0);
+        assertEquals("zebra",newAnimal.getName());
+    }
 }
