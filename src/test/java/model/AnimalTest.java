@@ -29,4 +29,12 @@ class AnimalTest {
         Animal secondAnimal = new Animal("Lion");
         assertTrue(firstAnimal.equals(secondAnimal));
     }
+    @Test
+    @DisplayName("saves assigns id to animal")
+    public void save_assignsIdToAnimal_int(){
+        Animal testAnimal = new Animal("Lion");
+        testAnimal.save();
+        Animal savedAnimal = Animal.all().get(0);
+        assertEquals(testAnimal.getId(),savedAnimal.getId());
+    }
 }

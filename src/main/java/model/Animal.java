@@ -1,9 +1,14 @@
 package model;
 
+import Database.DB;
+import org.sql2o.Connection;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Animal {
     private String name;
+    private int id;
 
     public Animal(String animalName) {
         this.name = animalName;
@@ -11,6 +16,10 @@ public class Animal {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -24,5 +33,26 @@ public class Animal {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void save(){
+
+        try(Connection con = DB.sql2o.open()) {
+        String sql = "INSERT INTO animal (name) values (:name)";
+            this.id = (int) con.createQuery(sql,true)
+                    .addParameter("name",this.name)
+                    .executeUpdate()
+                    .getKey();
+        }
+
+    }
+
+    public static List<Animal> all(){
+
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT  * FROM animal";
+            return con.createQuery(sql).executeAndFetch(Animal.class);
+        }
+
     }
 }
