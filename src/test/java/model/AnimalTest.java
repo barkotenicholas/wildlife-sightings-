@@ -2,9 +2,11 @@ package model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(DatabaseRule.class)
 class AnimalTest {
 
     @Test
@@ -18,6 +20,13 @@ class AnimalTest {
     @DisplayName("Check if Animal returns string")
     public void getName_returnsInstantiatedName_String(){
         Animal testAnimal = new Animal("Lion");
-        assertEquals(testAnimal.getAnimalName(),"Lion");
+        assertEquals(testAnimal.getName(),"Lion");
+    }
+    @Test
+    @DisplayName("check if equals returns true for name")
+    public void equals_returnsTrueIfNameIsSame_true(){
+        Animal firstAnimal = new Animal("Lion");
+        Animal secondAnimal = new Animal("Lion");
+        assertTrue(firstAnimal.equals(secondAnimal));
     }
 }
