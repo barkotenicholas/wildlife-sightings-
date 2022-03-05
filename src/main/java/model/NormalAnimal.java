@@ -5,7 +5,7 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class NormalAnimal extends Animal{
+public class NormalAnimal extends Animal {
 
     public static final String DATABASE_TYPE = "Normal";
 
