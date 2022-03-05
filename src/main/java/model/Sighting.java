@@ -83,7 +83,7 @@ public class Sighting {
         }
     }
     public static List<Sighting> findall(String location){
-        String sql = "SELECT * FROM sighting WHERE location = :location";
+        String sql = "SELECT * FROM sighting WHERE location = :location ORDER BY timestamp DESC";
         try(Connection con = DB.sql2o.open()) {
             return  con.createQuery(sql).addParameter("location",location).executeAndFetch(Sighting.class);
         }
