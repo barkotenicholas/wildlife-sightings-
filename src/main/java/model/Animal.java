@@ -6,9 +6,12 @@ import org.sql2o.Connection;
 import java.util.List;
 import java.util.Objects;
 
-public class Animal {
-    private String name;
-    private int id;
+public abstract class Animal {
+    public String name;
+    public int id;
+    public String health;
+    public String age;
+    public String type;
 
     public Animal(String animalName) {
         this.name = animalName;
@@ -20,6 +23,14 @@ public class Animal {
 
     public int getId() {
         return id;
+    }
+
+    public String getHealth() {
+        return health;
+    }
+
+    public String getAge() {
+        return age;
     }
 
     @Override
@@ -38,23 +49,19 @@ public class Animal {
     public void save(){
 
         try(Connection con = DB.sql2o.open()) {
-        String sql = "INSERT INTO animal (name) values (:name)";
+        String sql = "INSERT INTO animal (name ,type,health,age) values (:name,:type,:health,:age)";
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
+                    .addParameter("type",this.type)
+                    .addParameter("health",this.health)
+                    .addParameter("age",this.age)
                     .executeUpdate()
                     .getKey();
         }
 
     }
 
-    public static List<Animal> all(){
 
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT  * FROM animal";
-            return con.createQuery(sql).executeAndFetch(Animal.class);
-        }
-
-    }
     public static Animal find(int id){
         try(Connection con = DB.sql2o.open()) {
 
