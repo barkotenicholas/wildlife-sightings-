@@ -12,7 +12,11 @@ public class DatabaseRule implements  BeforeEachCallback, AfterEachCallback{
     public void afterEach(ExtensionContext context) throws Exception {
         try(Connection con = DB.sql2o.open()) {
             String deleteAnimalQuery = "DELETE FROM animal *;";
+            String deleteRangerQuery = "DELETE FROM ranger *;";
+            String deleteSightingQuery = "DELETE FROM sighting *;";
             con.createQuery(deleteAnimalQuery).executeUpdate();
+            con.createQuery(deleteRangerQuery).executeUpdate();
+            con.createQuery(deleteSightingQuery).executeUpdate();
         }
     }
 
