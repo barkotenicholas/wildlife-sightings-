@@ -1,0 +1,25 @@
+{{#partial "content"}}
+
+    <h1 class="text-center"> Rangers in the park  </h1>
+
+    {{#if this.rangers}}
+        <p class="text-center"> Ranger Details  </p>
+
+        {{#each this.rangers}}
+            <div class="card bg-dark text-white m-5">
+                <div class="card-header">
+                    <p>Ranger Name :{{this.name}} </p>
+                    <p>Ranger badgeno :{{this.badgeNo}} </p>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Rangers registered Animals the park</p>
+    {{/if}}
+
+
+
+
+{{/partial}}
+
+{{>layout.hbs}}
