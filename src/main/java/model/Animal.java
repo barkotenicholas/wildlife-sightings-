@@ -6,7 +6,7 @@ import org.sql2o.Connection;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Animal {
+public  class Animal {
     public String name;
     public int id;
     public String health;

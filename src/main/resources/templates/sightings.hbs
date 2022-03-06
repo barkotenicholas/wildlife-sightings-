@@ -1,0 +1,23 @@
+{{#partial "content"}}
+{{#if this.sightings}}
+    <p class="text-center"> Normal Animals  </p>
+
+    {{#each this.sightings}}
+        <div class="card bg-dark text-white m-5">
+            <div class="card-header">
+                <p>Animal Name :{{this.animal_name}} </p>
+            </div>
+            <div class="card-body">
+                <p>Location :{{this.zone}} </p>
+                <p>Time of sighting :{{this.timestamp}}</p>
+                <p>RangerName :{{this.ranger_name}}</p>
+            </div>
+        </div>
+    {{/each}}
+{{else}}
+    <p>No sightings has been made</p>
+{{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}

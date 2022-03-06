@@ -14,6 +14,8 @@ public class Sighting {
     private String location;
     private Timestamp timestamp;
     private int ranger_id;
+    private String animal_name;
+    private String ranger_name;
 
     public Sighting(int animal_id, String zone, Timestamp timestamp, int ranger_id) {
         this.animal_id = animal_id;
@@ -42,6 +44,14 @@ public class Sighting {
         return id;
     }
 
+    public String getAnimal_name() {
+        return animal_name;
+    }
+
+    public String getRanger_name() {
+        return ranger_name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,15 +77,18 @@ public class Sighting {
                     .getKey();
         }
     }
-
     public static List<Sighting> all(){
         String sql = "SELECT * FROM sighting ";
         try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Sighting.class);
+            List<Sighting> list = con.createQuery(sql).executeAndFetch(Sighting.class);
+            for(Sighting s : list){
+                s.getAnimalName();
+                s.getRangerName();
+            }
+            return list;
         }
 
     }
-
     public static Sighting find(String location){
         String sql = "SELECT * FROM sighting WHERE location = :location";
         try(Connection con = DB.sql2o.open()) {
@@ -89,4 +102,21 @@ public class Sighting {
         }
     }
 
+    public void getAnimalName(){
+
+            Animal animal = Animal.find(this.animal_id);
+            this.animal_name = animal.getName();
+
+    }
+    public void getRangerName(){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM ranger WHERE id = :id";
+            Ranger ranger = con.createQuery(sql)
+                    .addParameter("id", this.ranger_id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Ranger.class);
+            this.ranger_name = ranger.getName();
+            System.out.println(ranger.getName());
+        }
+    }
 }

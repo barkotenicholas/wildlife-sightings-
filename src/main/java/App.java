@@ -1,95 +1,138 @@
-import model.Animal;
-import model.EndangeredAnimal;
-import model.NormalAnimal;
-import model.Ranger;
+import model.*;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 import static spark.Spark.*;
-
 
 
 public class App {
     public static void main(String[] args) {
 
 
-        get("/",(request, response) -> {
-          return new ModelAndView(new HashMap<>(),"index.hbs");
-        },new HandlebarsTemplateEngine());
+        get("/", (request, response) -> {
+            return new ModelAndView(new HashMap<>(), "index.hbs");
+        }, new HandlebarsTemplateEngine());
 
-        get("/viewanimals",(request, response) -> {
+        get("/viewanimals", (request, response) -> {
 
-            Map<String ,Object> model = new HashMap<>();
-            model.put("animals",NormalAnimal.all());
-            model.put("endangeredAnimals",EndangeredAnimal.all());
+            Map<String, Object> model = new HashMap<>();
+            model.put("animals", NormalAnimal.all());
+            model.put("endangeredAnimals", EndangeredAnimal.all());
 
-            return new ModelAndView(model,"animal.hbs");
-        },new HandlebarsTemplateEngine());
+            return new ModelAndView(model, "animal.hbs");
+        }, new HandlebarsTemplateEngine());
 
-        get("/animal/new",(request, response) -> {
+        get("/animal/new", (request, response) -> {
 
-            return new ModelAndView(new HashMap<>(),"animalsnew.hbs");
-        },new HandlebarsTemplateEngine());
+            return new ModelAndView(new HashMap<>(), "animalsnew.hbs");
+        }, new HandlebarsTemplateEngine());
 
-        get("/endangered/new",(request, response) -> {
+        get("/endangered/new", (request, response) -> {
 
 
-            return new ModelAndView(new HashMap<>(),"endangerednew.hbs");
-        },new HandlebarsTemplateEngine());
+            return new ModelAndView(new HashMap<>(), "endangerednew.hbs");
+        }, new HandlebarsTemplateEngine());
 
-        get("/rangers",(request, response) -> {
+        get("/rangers", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("rangers", Ranger.all());
+            return new ModelAndView(model, "ViewRangers.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/newranger", (request, response) -> {
+            return new ModelAndView(new HashMap<>(), "rangernew.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/viewsightings", (request, response) -> {
+
             Map<String,Object> model = new HashMap<>();
-            model.put("rangers",Ranger.all());
-            return new ModelAndView(model,"ViewRangers.hbs");
-        },new HandlebarsTemplateEngine());
+            model.put("sightings",Sighting.all());
 
-        get("/newranger",(request, response) -> {
-            return new ModelAndView(new HashMap<>(),"rangernew.hbs");
-        },new HandlebarsTemplateEngine());
 
-        post("/addnewranger",(request, response) -> {
+            return new ModelAndView(model,"sightings.hbs");
+        }, new HandlebarsTemplateEngine());
+        get("/addsighting", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<String> location = new ArrayList<>();
+
+            location.add("ZoneA");
+            location.add("ZoneB");
+            location.add("ZoneC");
+            location.add("ZoneD");
+            model.put("location", location);
+
+            model.put("ranger", Ranger.all());
+            model.put("animal", NormalAnimal.all());
+            model.put("Eanimal", EndangeredAnimal.all());
+
+            return new ModelAndView(model, "sighting.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/newsighting", (request, response) -> {
+            String animal_id = request.queryParams("animal");
+            String location = request.queryParams("location");
+            String rangerid = request.queryParams("ranger");
+            Map<String, Object> model = new HashMap<>();
+            try {
+                Timestamp now = new Timestamp(new Date().getTime());
+                int animal = Integer.parseInt(animal_id);
+                int ranger_id = Integer.parseInt(rangerid);
+                Sighting sighting = new Sighting(animal, location, now, ranger_id);
+                sighting.save();
+
+                model.put("animalName", "sighting at location " + location);
+            } catch (IllegalArgumentException ignored) {
+
+            }
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/addnewranger", (request, response) -> {
             String rangerName = request.queryParams("rangerName");
             String rangerID = request.queryParams("rangerID");
-            Map<String,Object> model = new HashMap<>();
-            model.put("animalName","Ranger "+rangerName);
+            Map<String, Object> model = new HashMap<>();
+            model.put("animalName", "Ranger " + rangerName);
             try {
                 int rangerid = Integer.parseInt(rangerID);
-                Ranger ranger = new Ranger(rangerName,rangerid);
+                Ranger ranger = new Ranger(rangerName, rangerid);
                 ranger.save();
-            }catch ( IllegalArgumentException e){}
+            } catch (IllegalArgumentException e) {
+            }
 
-            return new ModelAndView(model,"success.hbs");
+            return new ModelAndView(model, "success.hbs");
 
-        },new HandlebarsTemplateEngine());
-        post("/endangered/animal",(request, response) -> {
+        }, new HandlebarsTemplateEngine());
+        post("/endangered/animal", (request, response) -> {
             String animalName = request.queryParams("animalName");
             String animalhealth = request.queryParams("animalhealth");
             String animalage = request.queryParams("animalage");
-            Map<String,Object> model = new HashMap<>();
+            Map<String, Object> model = new HashMap<>();
 
-            EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName,animalhealth,animalage);
+            EndangeredAnimal endangeredAnimal = new EndangeredAnimal(animalName, animalhealth, animalage);
             endangeredAnimal.save();
 
-            model.put("animalName","Endangered animal "+animalName);
-            return new ModelAndView(model,"success.hbs");
-        },new HandlebarsTemplateEngine());
-        post("/animal",(request, response) -> {
+            model.put("animalName", "Endangered animal " + animalName);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+        post("/animal", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
 
 
             String animalName = request.queryParams("animalName");
 
-            try{
+            try {
                 NormalAnimal normalAnimal = new NormalAnimal(animalName);
                 normalAnimal.save();
-            }catch (IllegalArgumentException e){}
+            } catch (IllegalArgumentException e) {
+            }
 
-            model.put("animalName",animalName);
-            return new ModelAndView(model,"success.hbs");
+            model.put("animalName", animalName);
+            return new ModelAndView(model, "success.hbs");
 
-        },new HandlebarsTemplateEngine());
+        }, new HandlebarsTemplateEngine());
     }
 }

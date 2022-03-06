@@ -61,7 +61,7 @@ class SightingTest {
         assertEquals(testSighting.getRanger_id(),testRanger.getId());
     }
     @Test
-    @DisplayName("save sightings returns with id")
+    @DisplayName("save sightings.hbs returns with id")
     void save_returnssightingwithid_int(){
         NormalAnimal testAnimal = new NormalAnimal("Lion");
         Ranger testRanger = new Ranger("Nicholas",123);
