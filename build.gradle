@@ -20,8 +20,8 @@ dependencies {
 }
 
 
-task stage(dependsOn: ['clean', 'installDist'])
-build.mustRunAfter clean
+task stage(dependsOn: 'bootJar') {
+}
 test {
     useJUnitPlatform()
 }
