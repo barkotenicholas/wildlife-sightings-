@@ -14,7 +14,7 @@ dependencies {
     implementation 'com.sparkjava:spark-template-handlebars:2.7.1'
     implementation 'org.sql2o:sql2o:1.6.0'
     implementation 'org.slf4j:slf4j-simple:1.7.36'
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
