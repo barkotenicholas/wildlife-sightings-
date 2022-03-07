@@ -19,9 +19,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-applicationName = "WildLife"
-mainClassName = 'App'
-task stage(dependsOn: ['clean', 'installDist'])
 
 test {
 
