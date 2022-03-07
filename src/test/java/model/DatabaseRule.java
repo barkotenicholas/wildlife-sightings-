@@ -22,6 +22,6 @@ public class DatabaseRule implements  BeforeEachCallback, AfterEachCallback{
 
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife254tracker", "mkuxykkugosllg", "649267604842a97d797c070f08b6b2003fcd0fce6b3b059886373431c642759b");
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/ddepip3jbbu866", "mkuxykkugosllg", "649267604842a97d797c070f08b6b2003fcd0fce6b3b059886373431c642759b");
     }
 }
