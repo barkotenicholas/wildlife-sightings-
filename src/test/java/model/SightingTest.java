@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(DatabaseRule.class)
+@Disabled
 class SightingTest {
 
     @Test

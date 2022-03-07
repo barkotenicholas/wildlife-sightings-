@@ -1,11 +1,13 @@
 package model;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(DatabaseRule.class)
+@Disabled
 class EndangeredAnimalTest {
 
     @Test
