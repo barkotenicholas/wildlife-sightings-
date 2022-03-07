@@ -13,7 +13,7 @@ public class DB {
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
-                dbUri = new URI("postgres://localhost:5432/ddepip3jbbu866");
+                dbUri = new URI("jdbc:postgresql://localhost:5432/ddepip3jbbu866");
             } else {
                 dbUri = new URI(System.getenv("DATABASE_URL"));
             }
