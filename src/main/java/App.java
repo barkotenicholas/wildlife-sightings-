@@ -11,7 +11,15 @@ import static spark.Spark.*;
 public class App {
     public static void main(String[] args) {
 
+        ProcessBuilder process = new ProcessBuilder();
+        Integer port;
+        if (process.environment().get("PORT") != null) {
+            port = Integer.parseInt(process.environment().get("PORT"));
+        } else {
+            port = 4567;
+        }
 
+        port(port);
         get("/", (request, response) -> {
             return new ModelAndView(new HashMap<>(), "index.hbs");
         }, new HandlebarsTemplateEngine());
@@ -46,6 +54,19 @@ public class App {
             return new ModelAndView(new HashMap<>(), "rangernew.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/location",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<String> location = new ArrayList<>();
+
+            location.add("ZoneA");
+            location.add("ZoneB");
+            location.add("ZoneC");
+            location.add("ZoneD");
+            model.put("location", location);
+            return new ModelAndView(model, "location.hbs");
+
+        },new HandlebarsTemplateEngine());
+
         get("/viewsightings", (request, response) -> {
 
             Map<String,Object> model = new HashMap<>();
@@ -54,6 +75,13 @@ public class App {
 
             return new ModelAndView(model,"sightings.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/location/:local",(request, response) -> {
+            String location = request.params(":local");
+            Map<String,Object> model = new HashMap<>();
+            model.put("sightings",Sighting.findall(location));
+            return new ModelAndView(model,"sightings.hbs");
+        },new HandlebarsTemplateEngine());
         get("/addsighting", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<String> location = new ArrayList<>();
