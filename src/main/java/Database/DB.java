@@ -6,10 +6,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class DB {
+
     private static URI dbUri;
     public static Sql2o sql2o;
-
-
 
     static {
 

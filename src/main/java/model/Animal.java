@@ -65,7 +65,7 @@ public  class Animal {
     public static Animal find(int id){
         try(Connection con = DB.sql2o.open()) {
 
-            String sql = "SELECT * FROM animal where id =:id";
+            String sql = "SELECT * FROM animal where id =:id ";
             return con.createQuery(sql).addParameter("id",id).executeAndFetchFirst(Animal.class);
         }
     }
