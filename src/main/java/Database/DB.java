@@ -47,7 +47,7 @@ public class DB {
 
                 @Override
                 public boolean returnGeneratedKeysByDefault() {
-                    return true;
+                    return false;
                 }
 
                 @Override
