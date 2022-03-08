@@ -41,7 +41,7 @@ public class NormalAnimal extends Animal {
 
     public static NormalAnimal find(int id){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animal WHERE id = :id";
+            String sql = "SELECT * FROM animal WHERE id = :id;";
             return con.createQuery(sql)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)

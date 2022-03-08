@@ -78,7 +78,7 @@ public class Sighting {
         }
     }
     public static List<Sighting> all(){
-        String sql = "SELECT * FROM sighting ";
+        String sql = "SELECT * FROM sighting ;";
         try(Connection con = DB.sql2o.open()) {
             List<Sighting> list = con.createQuery(sql).executeAndFetch(Sighting.class);
             for(Sighting s : list){
@@ -90,13 +90,13 @@ public class Sighting {
 
     }
     public static Sighting find(String location){
-        String sql = "SELECT * FROM sighting WHERE location = :location";
+        String sql = "SELECT * FROM sighting WHERE location = :location;";
         try(Connection con = DB.sql2o.open()) {
             return  con.createQuery(sql).addParameter("location",location).executeAndFetchFirst(Sighting.class);
         }
     }
     public static List<Sighting> findall(String location){
-        String sql = "SELECT * FROM sighting WHERE location = :location ORDER BY timestamp DESC";
+        String sql = "SELECT * FROM sighting WHERE location = :location ORDER BY timestamp DESC;";
         try(Connection con = DB.sql2o.open()) {
             List<Sighting> list = con.createQuery(sql).addParameter("location",location).executeAndFetch(Sighting.class);
             for(Sighting s : list){
@@ -116,7 +116,7 @@ public class Sighting {
     }
     public void getRangerName(){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM ranger WHERE id = :id";
+            String sql = "SELECT * FROM ranger WHERE id = :id;";
             Ranger ranger = con.createQuery(sql)
                     .addParameter("id", this.ranger_id)
                     .throwOnMappingFailure(false)
