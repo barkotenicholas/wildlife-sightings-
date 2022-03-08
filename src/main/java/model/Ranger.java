@@ -54,7 +54,7 @@ public class Ranger {
     }
 
     public static List<Ranger> all(){
-        String sql = "SELECT * FROM ranger ";
+        String sql = "SELECT * FROM ranger --";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Ranger.class);
         }
@@ -63,7 +63,7 @@ public class Ranger {
 
     public static Ranger find(int id){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM ranger WHERE id = :id ";
+            String sql = "SELECT * FROM ranger WHERE id = :id --";
             return con.createQuery(sql)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)

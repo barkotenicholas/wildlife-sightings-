@@ -65,7 +65,7 @@ public  class Animal {
     public static Animal find(int id){
         try(Connection con = DB.sql2o.open()) {
 
-            String sql = "SELECT * FROM animal where id =:id ";
+            String sql = "SELECT * FROM animal where id =:id --";
             return con.createQuery(sql).addParameter("id",id).executeAndFetchFirst(Animal.class);
         }
     }
@@ -73,7 +73,7 @@ public  class Animal {
     public void update(String newName,int id){
 
         try(Connection con = DB.sql2o.open()) {
-            String sql = "UPDATE animal SET name = :name WHERE id = :id";
+            String sql = "UPDATE animal SET name = :name WHERE id = :id --";
             con.createQuery(sql)
                     .addParameter("name",newName)
                     .addParameter("id",id)
