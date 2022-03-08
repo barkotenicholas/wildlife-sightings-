@@ -1,13 +1,11 @@
 package Database;
 
 import org.sql2o.Sql2o;
-import org.sql2o.converters.UUIDConverter;
-import org.sql2o.quirks.NoQuirks;
+
 import org.sql2o.quirks.PostgresQuirks;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.UUID;
 
 public class DB {
 
@@ -22,7 +20,6 @@ public class DB {
             } else {
                 dbUri = new URI(System.getenv("DATABASE_URL"));
             }
-
 
             int port = dbUri.getPort();
             String host = dbUri.getHost();
