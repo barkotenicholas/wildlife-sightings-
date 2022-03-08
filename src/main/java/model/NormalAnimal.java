@@ -22,7 +22,7 @@ public class NormalAnimal extends Animal {
     public void save() {
 
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animal (name ,type) values (:name,:type)";
+            String sql = "INSERT INTO animal (name ,type) values (:name,:type);";
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
                     .addParameter("type",this.type)
@@ -41,7 +41,7 @@ public class NormalAnimal extends Animal {
 
     public static NormalAnimal find(int id){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animal WHERE id = :id";
+            String sql = "SELECT * FROM animal WHERE id = :id;";
             return con.createQuery(sql)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
