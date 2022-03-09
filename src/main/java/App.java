@@ -27,8 +27,13 @@ public class App {
         get("/viewanimals", (request, response) -> {
 
             Map<String, Object> model = new HashMap<>();
-            model.put("animals", NormalAnimal.all());
-            model.put("endangeredAnimals", EndangeredAnimal.all());
+            try{
+                model.put("animals", NormalAnimal.all());
+                model.put("endangeredAnimals", EndangeredAnimal.all());
+
+            }catch (Exception e){
+                System.out.println(e);
+            }
 
             return new ModelAndView(model, "animal.hbs");
         }, new HandlebarsTemplateEngine());
