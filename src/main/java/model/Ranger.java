@@ -63,7 +63,7 @@ public class Ranger {
 
     public static Ranger find(int id){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM ranger WHERE id = :id; --";
+            String sql = "SELECT * FROM ranger WHERE id = :id";
             return con.createQuery(sql)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
