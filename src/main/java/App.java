@@ -21,6 +21,8 @@ public class App {
 
         port(port);
         get("/", (request, response) -> {
+
+            System.out.println("Hello world sanaa");
             return new ModelAndView(new HashMap<>(), "index.hbs");
         }, new HandlebarsTemplateEngine());
 
