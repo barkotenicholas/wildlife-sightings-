@@ -1,0 +1,22 @@
+{{#partial "content"}}
+
+    <h1 class="text-center"> WildLife Zones </h1>
+
+    {{#if this.location}}
+        <p class="text-center"> zone names  </p>
+
+        {{#each this.location}}
+            <div class="card bg-dark text-white m-5">
+                <div class="card-header">
+                    <a href="/location/{{this}}">Location Name :{{this}} </a>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Normal Animals the park</p>
+    {{/if}}
+
+
+{{/partial}}
+
+{{>layout.hbs}}

@@ -1,0 +1,25 @@
+{{#partial "content"}}
+
+    <h1 class="text-center">Register Ranger</h1>
+
+    <div class=" d-flex justify-content-center">
+        <form action="/addnewranger" method="post" class="was-validated">
+            <div class="form-group col-xs-4">
+                <label for="uname">Ranger Name :</label>
+                <input type="text" class="form-control" id="uname" placeholder="Input Rangers Name" name="rangerName" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group col-xs-4">
+            <label for="uname">Ranger badge no :</label>
+            <input type="number" class="form-control" id="uname" placeholder="Input Ranger badge no" name="rangerID" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}

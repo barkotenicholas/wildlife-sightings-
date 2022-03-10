@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.RangerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-03-07T08:42:36" hostname="moringa-ThinkPad-L440" time="0.356">
+  <properties/>
+  <testcase name="find returns endangered animal with same id" classname="model.RangerTest" time="0.206"/>
+  <testcase name="Ranger returns badgeno when instantiated" classname="model.RangerTest" time="0.009"/>
+  <testcase name="Ranger instantiates correctly" classname="model.RangerTest" time="0.013"/>
+  <testcase name="Ranger returns name when instantiated" classname="model.RangerTest" time="0.009"/>
+  <testcase name="Ranger object saves to database" classname="model.RangerTest" time="0.033"/>
+  <testcase name="all returns all instances of Ranger in database" classname="model.RangerTest" time="0.078"/>
+  <system-out><![CDATA[123
+123
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

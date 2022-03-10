@@ -1,0 +1,36 @@
+{{#partial "content"}}
+
+    <h1 class="text-center"> List of Animals  </h1>
+
+    {{#if this.animals}}
+        <p class="text-center"> Normal Animals  </p>
+
+        {{#each this.animals}}
+            <div class="card bg-dark text-white m-5">
+                <div class="card-header">
+                    <p>Animal Name :{{this.name}} </p>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Normal Animals the park</p>
+    {{/if}}
+
+    {{#if this.endangeredAnimals}}
+        <p class="text-center"> Endangered Animals  </p>
+
+        {{#each this.endangeredAnimals}}
+            <div class="card bg-dark text-white m-5">
+                <div class="card-header">
+                    <p>Animal Name :{{this.name}} </p>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Endangered Animals in the park </p>
+    {{/if}}
+
+
+{{/partial}}
+
+{{>layout.hbs}}

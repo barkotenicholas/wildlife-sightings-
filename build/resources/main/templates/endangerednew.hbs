@@ -1,0 +1,39 @@
+{{#partial "content"}}
+
+    <h1 class="text-center">Add new Animal</h1>
+
+    <div class=" d-flex justify-content-center">
+        <form action="/endangered/animal" method="post" class="was-validated">
+            <div class="form-group col-xs-4">
+                <label for="uname">Endangered Animal Name :</label>
+                <input type="text" class="form-control" id="uname" placeholder="Enter Animal Name" name="animalName" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group input-group mb-3">
+                <select class="custom-select" id="health" name="animalhealth">
+                    <option value="healthy">healthy</option>
+                    <option value="ill">ill</option>
+                    <option value="okay">okay</option>
+                </select>
+                <div class="input-group-append">
+                    <label class="input-group-text" for="health" >Options</label>
+                </div>
+            </div>
+            <div class="form-group input-group mb-3">
+                <select class="custom-select" id="age" name="animalage">
+                    <option value="newborn">newborn</option>
+                    <option value="young">young</option>
+                    <option value="adult">adult</option>
+                </select>
+                <div class="input-group-append">
+                    <label class="input-group-text" for="age" >Options</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}
