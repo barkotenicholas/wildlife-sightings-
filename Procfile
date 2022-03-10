@@ -1,2 +1,1 @@
-web:  ./build/tmp/compileJava/previous-compilation-data.bin
-
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar out/artifacts/WildLife_jar/*.jar
