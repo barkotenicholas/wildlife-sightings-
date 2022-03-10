@@ -99,11 +99,11 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <jdkVersion>1.8</jdkVersion>
+                    <jdkVersion>17</jdkVersion>
                     <!-- Change this to YOUR application name! -->
                     <appName>App</appName>
                     <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+                        <web>web: java -Dserver.port=$PORT $JAVA_OPTS -jar out/artifacts/WildLife_jar/*.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
