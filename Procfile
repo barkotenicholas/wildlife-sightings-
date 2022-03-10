@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar out/artifacts/WildLife_jar/*.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/WildLife-1.0-jar-with-dependencies.jar
